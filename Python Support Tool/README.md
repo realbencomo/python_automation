@@ -1,13 +1,13 @@
-# pySupportTool 🛠️
+# pySupportTool 🛠
 
 A command-line tool (CLI) for IT support technicians, built with Python. It provides basic utilities such as network checks, system diagnostics, and temporary file cleanup.
 
 ## Features
 
-- 📡 Check connectivity using `ping`
-- 🧠 System information (RAM, CPU, disk space, OS)
-- 🧹 Temporary file cleanup
-- ✅ Compatible with Windows and Linux
+-  Check connectivity using `ping`
+-  System information (RAM, CPU, disk space, OS)
+-  Temporary file cleanup
+-  Compatible with Windows and Linux
 
 ## Requirements
 
