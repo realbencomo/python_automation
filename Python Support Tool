@@ -1,0 +1,58 @@
+import os
+import platform
+import subprocess
+import psutil
+
+def show_menu():
+    print("""
+--- pySupportTool ---
+1. Verificar conectividad (ping)
+2. Información del sistema
+3. Limpiar archivos temporales
+0. Salir
+""")
+
+def ping_host():
+    host = input("Ingrese el dominio o IP a hacer ping: ")
+    try:
+        count = "-n" if platform.system().lower() == "windows" else "-c"
+        subprocess.run(["ping", count, "4", host], check=True)
+    except subprocess.CalledProcessError:
+        print("No se pudo hacer ping al host.")
+
+def system_info():
+    print("\n--- Información del sistema ---")
+    print(f"Sistema operativo: {platform.system()} {platform.release()}")
+    print(f"Procesador: {platform.processor()}")
+    print(f"RAM total: {psutil.virtual_memory().total // (1024 ** 2)} MB")
+    print(f"RAM disponible: {psutil.virtual_memory().available // (1024 ** 2)} MB")
+    print(f"Espacio en disco: {psutil.disk_usage('/').free // (1024 ** 3)} GB disponibles\n")
+
+def clean_temp_files():
+    print("\n--- Limpieza básica ---")
+    temp_dirs = ["/tmp", os.path.expanduser("~/.cache")] if platform.system() != "Windows" else [os.getenv('TEMP')]
+    for path in temp_dirs:
+        if os.path.exists(path):
+            for root, dirs, files in os.walk(path):
+                for name in files:
+                    try:
+                        os.remove(os.path.join(root, name))
+                    except Exception:
+                        pass
+    print("Archivos temporales limpiados.\n")
+
+if __name__ == "__main__":
+    while True:
+        show_menu()
+        option = input("Selecciona una opción: ")
+        if option == "1":
+            ping_host()
+        elif option == "2":
+            system_info()
+        elif option == "3":
+            clean_temp_files()
+        elif option == "0":
+            print("Saliendo...")
+            break
+        else:
+            print("Opción inválida. Intenta de nuevo.")
