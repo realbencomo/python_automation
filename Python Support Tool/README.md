@@ -9,6 +9,10 @@ A command-line tool (CLI) for IT support technicians, built with Python. It prov
 -  Temporary file cleanup
 -  Compatible with Windows and Linux
 
+## Demo
+
+- [Asciimovie link](https://asciinema.org/a/rWHnLG5222szAEmIJvHavuZbS)
+
 ## Requirements
 
 - Python 3.7 or higher
